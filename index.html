@@ -85,7 +85,14 @@
   .btn.line:hover{transform:rotate(1deg) translateY(-2px);border-color:var(--terra);color:var(--terra)}
   .margin-note{font-family:Caveat,cursive;font-size:21px;color:var(--terra);transform:rotate(-3deg);margin-top:44px;display:inline-block}
   /* ---------- sections ---------- */
-  section{padding:64px 0}
+  section{padding:64px 0;position:relative}
+  .chwash{position:absolute;inset:0;pointer-events:none;opacity:.16;
+    filter:sepia(.28) saturate(.9);mix-blend-mode:multiply;
+    -webkit-mask-image:linear-gradient(to bottom,transparent,#000 22%,#000 72%,transparent);
+    mask-image:linear-gradient(to bottom,transparent,#000 22%,#000 72%,transparent);}
+  .chwash.turner{background:url('assets/Joseph-Mallord-William-Turner-The-Lake-of-Zug.jpg') center 40%/cover no-repeat}
+  .chwash.river{background:url('assets/river-landscape.webp') center 45%/cover no-repeat}
+  html[data-light="dusk"] .chwash{opacity:.12;mix-blend-mode:normal}
   .kicker{font-family:Caveat,cursive;font-size:22px;color:var(--sage-deep);margin-bottom:6px}
   h2{font-family:Fraunces,serif;font-weight:500;font-size:clamp(28px,4.5vw,38px);margin-bottom:30px}
   /* specimen cards */
@@ -187,6 +194,7 @@
 </section>
 
 <section id="path">
+  <div class="chwash turner"></div>
   <div class="rv"><div class="kicker">chapter two</div><h2>The path so far</h2></div>
   <div class="tl">
     <div class="tl-item rv"><span class="when">now — 2026</span><h4>LLM pipelines @ Neoware</h4>
@@ -203,6 +211,7 @@
 </section>
 
 <section id="palette">
+  <div class="chwash river"></div>
   <div class="rv"><div class="kicker">chapter three</div><h2>The palette</h2></div>
   <div class="chips">
     <div class="chip rv"><i style="background:#8B5CF6"></i><b>LLMs</b><small>OpenAI · Anthropic · Gemini</small></div>
@@ -221,7 +230,7 @@
      <a href="https://www.linkedin.com/in/reddysurya/">LinkedIn</a> ·
      <a href="https://x.com/SR1606_">X</a> ·
      <a href="https://github.com/Surya-R-16">GitHub</a></p>
-  <p class="smallprint">Set in Fraunces &amp; Caveat on a single HTML page. No frameworks, no trackers, no cortisol.<br>Paintings: G. Courbet, <i>The Calm Sea</i> (1869) &amp; F. E. Church, <i>The Aegean Sea</i> (c. 1877) via The Met Open Access; botanical plate via Wikimedia Commons.<br>Prototype — painted in one sitting.</p>
+  <p class="smallprint">Set in Fraunces &amp; Caveat on a single HTML page. No frameworks, no trackers, no cortisol.<br>Paintings: G. Courbet, <i>The Calm Sea</i> (1869), J. M. W. Turner, <i>Lake of Zug</i> &amp; F. E. Church, <i>The Aegean Sea</i> (c. 1877) via The Met Open Access; river landscape from the keeper's own collection; botanical plate via Wikimedia Commons.<br>Prototype — painted in one sitting.</p>
 </section>
 </div>
 
