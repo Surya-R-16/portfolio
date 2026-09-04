@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" data-light="morning">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surya — Field Notes (prototype)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F1E5; --paper-2:#EFE7D5; --ink:#2E2A23; --ink-soft:#6B6257;
+    --sage:#7D9070; --sage-deep:#5B7050; --terra:#C0683F; --ochre:#D29A3C;
+    --dusty:#7C99A8; --card:#FBF8F0; --line:#D8CDB4;
+    --wash-1:rgba(125,144,112,.16); --wash-2:rgba(210,154,60,.14); --wash-3:rgba(192,104,63,.10);
+  }
+  html[data-light="dusk"]{
+    --paper:#2E2B26; --paper-2:#262320; --ink:#EDE4D2; --ink-soft:#A79C88;
+    --sage:#9DB08D; --sage-deep:#B9CBA9; --terra:#D98A5F; --ochre:#D9A94F;
+    --dusty:#93AFC0; --card:#37332C; --line:#4A4438;
+    --wash-1:rgba(157,176,141,.12); --wash-2:rgba(217,169,79,.10); --wash-3:rgba(217,138,95,.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:Georgia,'Times New Roman',serif; font-size:17px; line-height:1.7;
+    transition:background 1.2s ease,color 1.2s ease; overflow-x:hidden;
+  }
+  /* film grain over everything */
+  body::after{
+    content:""; position:fixed; inset:0; z-index:60; pointer-events:none; opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 28px}
+  /* ---------- nav ---------- */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(6px);
+    background:color-mix(in srgb,var(--paper) 82%,transparent);
+    border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;max-width:900px;padding-top:14px;padding-bottom:14px}
+  .brand{font-family:Fraunces,serif;font-weight:600;font-size:19px;letter-spacing:.01em}
+  .brand em{font-family:Caveat,cursive;font-style:normal;color:var(--terra);font-size:21px}
+  nav ul{display:flex;gap:26px;list-style:none;font-size:14.5px}
+  nav a{color:var(--ink-soft);text-decoration:none;transition:color .3s}
+  nav a:hover{color:var(--terra)}
+  #lightBtn{font-family:inherit;font-size:14px;color:var(--ink-soft);background:none;border:1px solid var(--line);
+    border-radius:999px;padding:5px 14px;cursor:pointer;transition:all .4s}
+  #lightBtn:hover{border-color:var(--terra);color:var(--terra)}
+  /* ---------- hero ---------- */
+  header{position:relative;padding:110px 0 70px;overflow:hidden}
+  .wash{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;transition:background 1.2s}
+  .w1{width:480px;height:480px;background:var(--wash-1);top:-140px;left:-120px}
+  .w2{width:420px;height:420px;background:var(--wash-2);top:40px;right:-140px}
+  .w3{width:300px;height:300px;background:var(--wash-3);bottom:-120px;left:35%}
+  /* painted wash — real oil on canvas, melted into the paper */
+  .paint{position:absolute;inset:0;pointer-events:none;
+    background:url('assets/courbet-calm.jpg') center 32%/cover no-repeat;
+    opacity:.30;filter:sepia(.28) saturate(.9);mix-blend-mode:multiply;
+    -webkit-mask-image:linear-gradient(to bottom,transparent,#000 16%,#000 68%,transparent);
+    mask-image:linear-gradient(to bottom,transparent,#000 16%,#000 68%,transparent);}
+  html[data-light="dusk"] .paint{background-image:url('assets/church-aegean.jpg');
+    opacity:.24;filter:sepia(.3) saturate(.85);mix-blend-mode:normal;}
+  /* framed natural-history plate */
+  figure.plate{margin:44px auto 0;max-width:300px;transform:rotate(1.5deg);background:var(--card);
+    padding:12px 12px 6px;border:1px solid var(--line);box-shadow:5px 6px 0 var(--wash-2);transition:transform .4s}
+  figure.plate:hover{transform:rotate(0deg) scale(1.015)}
+  figure.plate img{width:100%;display:block;filter:sepia(.15)}
+  figure.plate figcaption{font-family:Caveat,cursive;font-size:18px;color:var(--ink-soft);text-align:center;padding:8px 4px 4px}
+  @media(min-width:920px){figure.plate{float:right;max-width:250px;margin:6px 0 18px 34px}}
+  .figno{font-family:Caveat,cursive;font-size:22px;color:var(--sage-deep);display:block;margin-bottom:18px}
+  h1{font-family:Fraunces,serif;font-weight:500;font-size:clamp(40px,7vw,64px);line-height:1.12;letter-spacing:-.01em}
+  h1 .u{position:relative;white-space:nowrap}
+  h1 .u svg{position:absolute;left:-2%;bottom:-.18em;width:104%;height:.42em;overflow:visible}
+  h1 .u path{fill:none;stroke:var(--ochre);stroke-width:5;stroke-linecap:round;
+    stroke-dasharray:600;stroke-dashoffset:600;animation:draw 1.6s .7s ease forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .lede{margin-top:26px;font-size:19px;color:var(--ink-soft);max-width:56ch}
+  .lede strong{color:var(--ink);font-weight:600}
+  .btns{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{font-family:Fraunces,serif;font-size:16px;padding:12px 26px;border-radius:4px;text-decoration:none;
+    transition:transform .35s cubic-bezier(.2,.9,.3,1.4),box-shadow .35s,background .4s}
+  .btn.solid{background:var(--ink);color:var(--paper)}
+  .btn.solid:hover{transform:rotate(-1.2deg) translateY(-2px);box-shadow:4px 5px 0 var(--terra)}
+  .btn.line{border:1.5px solid var(--ink-soft);color:var(--ink)}
+  .btn.line:hover{transform:rotate(1deg) translateY(-2px);border-color:var(--terra);color:var(--terra)}
+  .margin-note{font-family:Caveat,cursive;font-size:21px;color:var(--terra);transform:rotate(-3deg);margin-top:44px;display:inline-block}
+  /* ---------- sections ---------- */
+  section{padding:64px 0}
+  .kicker{font-family:Caveat,cursive;font-size:22px;color:var(--sage-deep);margin-bottom:6px}
+  h2{font-family:Fraunces,serif;font-weight:500;font-size:clamp(28px,4.5vw,38px);margin-bottom:30px}
+  /* specimen cards */
+  .spec{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:28px 30px;margin-bottom:22px;
+    position:relative;transition:transform .4s ease,box-shadow .4s ease,background 1.2s}
+  .spec:hover{transform:translateY(-3px) rotate(-.3deg);box-shadow:6px 8px 0 var(--wash-2)}
+  .spec .no{font-family:Caveat,cursive;font-size:20px;color:var(--ink-soft)}
+  .spec h3{font-family:Fraunces,serif;font-size:24px;font-weight:600;margin:2px 0 8px}
+  .spec h3 a{color:var(--ink);text-decoration:none;border-bottom:2px solid var(--ochre)}
+  .spec h3 a:hover{color:var(--terra);border-color:var(--terra)}
+  .spec p{color:var(--ink-soft);font-size:16px;max-width:58ch}
+  .stamp{position:absolute;top:22px;right:24px;font-family:Fraunces,serif;font-size:12px;font-weight:700;letter-spacing:.14em;
+    color:var(--sage-deep);border:2px solid var(--sage-deep);border-radius:4px;padding:4px 10px;transform:rotate(6deg);
+    opacity:.85;transition:transform .3s}
+  .spec:hover .stamp{transform:rotate(-4deg) scale(1.08)}
+  .stamp.wip{color:var(--ochre);border-color:var(--ochre)}
+  .tags{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+  .tags span{font-size:13px;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:2px 12px}
+  /* timeline */
+  .tl{position:relative;margin-top:10px;padding-left:34px}
+  .tl::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;
+    background:repeating-linear-gradient(var(--sage) 0 7px,transparent 7px 13px);opacity:.6}
+  .tl-item{position:relative;padding-bottom:34px}
+  .tl-item::before{content:"";position:absolute;left:-31px;top:9px;width:12px;height:12px;border-radius:50%;
+    background:var(--paper);border:2.5px solid var(--terra)}
+  .tl-item .when{font-family:Caveat,cursive;font-size:20px;color:var(--terra)}
+  .tl-item h4{font-family:Fraunces,serif;font-size:19px;font-weight:600}
+  .tl-item p{color:var(--ink-soft);font-size:15.5px;max-width:60ch}
+  .tl-item p b{color:var(--ink)}
+  /* paint chips */
+  .chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:14px 16px;transition:transform .3s,background 1.2s}
+  .chip:hover{transform:translateY(-3px) rotate(.5deg)}
+  .chip i{display:block;width:100%;height:10px;border-radius:99px;margin-bottom:10px}
+  .chip b{font-family:Fraunces,serif;font-size:14.5px;font-weight:600;display:block}
+  .chip small{color:var(--ink-soft);font-size:12.5px}
+  /* colophon */
+  .colophon{border-top:1.5px solid var(--line);margin-top:20px;padding:56px 0 90px;text-align:center}
+  .colophon .hand{font-family:Caveat,cursive;font-size:26px;color:var(--sage-deep);margin-bottom:10px}
+  .colophon h2{margin-bottom:12px}
+  .colophon p{color:var(--ink-soft)}
+  .colophon a{color:var(--terra)}
+  .smallprint{margin-top:34px;font-size:13px;color:var(--ink-soft);font-style:italic}
+  /* reveal */
+  .rv{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}*{animation:none!important;transition:none!important}}
+  @media(max-width:640px){nav ul{display:none}header{padding:70px 0 50px}.stamp{position:static;display:inline-block;margin-bottom:12px}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <div class="brand">Surya <em>· field notes</em></div>
+  <ul><li><a href="#ships">specimens</a></li><li><a href="#path">the path</a></li><li><a href="#palette">palette</a></li><li><a href="#colophon">colophon</a></li></ul>
+  <button id="lightBtn" title="change the light">☀ morning</button>
+</div></nav>
+
+<header><div class="paint"></div><div class="wash w1"></div><div class="wash w2"></div><div class="wash w3"></div>
+  <div class="wrap">
+    <figure class="plate">
+      <img src="assets/botanical-3503.jpg" alt="Hand-colored botanical plate of a passionflower, 1836">
+      <figcaption>plate 3503 — passiflora, Curtis's Botanical Magazine, 1836</figcaption>
+    </figure>
+    <span class="figno">fig. 00 — the keeper of this journal</span>
+    <h1>Applied AI, kept<br>like <span class="u">field notes.<svg viewBox="0 0 300 24" preserveAspectRatio="none"><path d="M4,16 C60,8 120,20 170,12 S270,10 296,14"/></svg></span></h1>
+    <p class="lede">I'm <strong>Surya</strong> — AI Engineer &amp; Data Scientist. I build applied AI end-to-end,
+      from ambiguous problem to something running in production. Currently: LLM pipelines and
+      hybrid retrieval at <strong>Neoware</strong>. On the side: small apps that keep track of life,
+      so you don't have to.</p>
+    <div class="btns">
+      <a class="btn solid" href="#ships">See the specimens</a>
+      <a class="btn line" href="#colophon">Say hello</a>
+    </div>
+    <span class="margin-note">← everything here shipped, nothing here is a mockup</span>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="ships">
+  <div class="rv"><div class="kicker">chapter one</div><h2>Specimens</h2></div>
+  <div class="spec rv"><span class="stamp">● LIVE</span>
+    <span class="no">No. 01 — voice journal</span>
+    <h3><a href="https://the-capsule.vercel.app">The-Capsule</a></h3>
+    <p>You talk, it transcribes and finds the patterns in your life — mood, themes, threads across entries. A thoughtful archivist for your memories, running on Gemini, private on your device.</p>
+    <div class="tags"><span>TypeScript</span><span>Gemini</span><span>PWA</span></div>
+  </div>
+  <div class="spec rv"><span class="stamp">● LIVE</span>
+    <span class="no">No. 02 — voice nutrition</span>
+    <h3><a href="https://goal65.vercel.app">NutriVoice</a></h3>
+    <p>Say what you ate, get calories and macros back. Voice-first logging, AI health insights, an installable app that keeps your data on your device.</p>
+    <div class="tags"><span>React 19</span><span>Vite</span><span>Gemini</span></div>
+  </div>
+  <div class="spec rv"><span class="stamp wip">◐ IN PROGRESS</span>
+    <span class="no">No. 03 — android expenses</span>
+    <h3><a href="https://github.com/Surya-R-16/TRACKO">TRACKO</a></h3>
+    <p>Reads your bank SMS and categorizes spending automatically — regex smarts for Indian banks, Room database underneath. Backend done, UI growing.</p>
+    <div class="tags"><span>Kotlin</span><span>Compose</span><span>Room</span></div>
+  </div>
+</section>
+
+<section id="path">
+  <div class="rv"><div class="kicker">chapter two</div><h2>The path so far</h2></div>
+  <div class="tl">
+    <div class="tl-item rv"><span class="when">now — 2026</span><h4>LLM pipelines @ Neoware</h4>
+      <p>Hybrid retrieval systems, production LLM work. Plus the three specimens above, built on nights and weekends.</p></div>
+    <div class="tl-item rv"><span class="when">earlier</span><h4>Multi-agent financial reporting</h4>
+      <p>CrewAI system — researcher, analyst, compiler agents. <b>5× faster reports</b>, 40% less manual validation.</p></div>
+    <div class="tl-item rv"><span class="when">earlier</span><h4>Enterprise RAG engine</h4>
+      <p>BM25 + vector + cross-encoder rerank. <b>&gt;95% Q&amp;A accuracy</b>, MLflow-tracked, CI-gated eval.</p></div>
+    <div class="tl-item rv"><span class="when">earlier</span><h4>Real-time defect detection</h4>
+      <p>YOLOv8 + OpenCV on live manufacturing streams. Low latency, real factory floor.</p></div>
+    <div class="tl-item rv"><span class="when">along the way</span><h4>MSc Data Science, Lancaster</h4>
+      <p>BE Electronics &amp; Telecommunication before that. Co-author, paper on knowledge-graph-augmented retrieval (under review).</p></div>
+  </div>
+</section>
+
+<section id="palette">
+  <div class="rv"><div class="kicker">chapter three</div><h2>The palette</h2></div>
+  <div class="chips">
+    <div class="chip rv"><i style="background:#8B5CF6"></i><b>LLMs</b><small>OpenAI · Anthropic · Gemini</small></div>
+    <div class="chip rv"><i style="background:#C0683F"></i><b>Agent frameworks</b><small>LangChain · LlamaIndex · CrewAI</small></div>
+    <div class="chip rv"><i style="background:#7D9070"></i><b>ML</b><small>PyTorch · scikit-learn · HF · YOLOv8</small></div>
+    <div class="chip rv"><i style="background:#D29A3C"></i><b>Data</b><small>Pinecone · FAISS · Neo4j · Postgres</small></div>
+    <div class="chip rv"><i style="background:#7C99A8"></i><b>Engineering</b><small>Python · TypeScript · React · FastAPI · Docker</small></div>
+    <div class="chip rv"><i style="background:#B087B8"></i><b>Mobile</b><small>Kotlin · Compose</small></div>
+  </div>
+</section>
+
+<section id="colophon" class="colophon rv">
+  <div class="hand">the colophon — every journal ends with one</div>
+  <h2>Say hello.</h2>
+  <p><a href="mailto:reddysurya2016@gmail.com">reddysurya2016@gmail.com</a> ·
+     <a href="https://www.linkedin.com/in/reddysurya/">LinkedIn</a> ·
+     <a href="https://x.com/SR1606_">X</a> ·
+     <a href="https://github.com/Surya-R-16">GitHub</a></p>
+  <p class="smallprint">Set in Fraunces &amp; Caveat on a single HTML page. No frameworks, no trackers, no cortisol.<br>Paintings: G. Courbet, <i>The Calm Sea</i> (1869) &amp; F. E. Church, <i>The Aegean Sea</i> (c. 1877) via The Met Open Access; botanical plate via Wikimedia Commons.<br>Prototype — painted in one sitting.</p>
+</section>
+</div>
+
+<script>
+  // gentle reveals
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .12 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  // morning <-> dusk
+  const btn = document.getElementById('lightBtn'), root = document.documentElement;
+  btn.addEventListener('click', () => {
+    const dusk = root.dataset.light !== 'dusk';
+    root.dataset.light = dusk ? 'dusk' : 'morning';
+    btn.textContent = dusk ? '☾ dusk' : '☀ morning';
+  });
+</script>
+</body>
+</html>
