@@ -46,8 +46,10 @@
   .stackline b{display:block;font-size:12px;background:var(--ink);color:#fff;display:inline-block;padding:1px 8px;margin-bottom:4px}
   .hero{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:36px;align-items:start}
   .heroright{align-self:start;width:100%}
-  pre.ascii{display:block;width:100%;margin:0;min-height:300px;padding:18px 16px;box-sizing:border-box;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;line-height:1.38;letter-spacing:0;word-spacing:0;white-space:pre;word-break:normal;overflow:hidden;text-align:center;background:#fff;border:2px solid var(--line);tab-size:4;font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0;}
-.ascii-signal{margin-top:12px;min-height:72px;border:2px solid var(--line);background:#fff;padding:8px 10px;overflow:hidden}
+  pre.ascii{display:block;width:100%;margin:0;padding:18px 16px;box-sizing:border-box;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:400;line-height:1.38;letter-spacing:0;word-spacing:0;white-space:pre;word-break:normal;overflow:hidden;background:#fff;border:2px solid var(--line);tab-size:4;font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0;}
+  .ascii .ar{color:var(--ink);opacity:.55}
+  .ascii .ak{color:var(--blue)}
+  .ascii-signal{margin-top:12px;min-height:72px;border:2px solid var(--line);background:#fff;padding:8px 10px;overflow:hidden}
   .signal-label{color:var(--blue);font-size:9px;font-weight:700;margin-bottom:4px}
   #signal{margin:0;padding:0;color:var(--blue);font-family:'JetBrains Mono',monospace;font-size:8px;line-height:1.15;white-space:pre;overflow:hidden;font-variant-ligatures:none}
   .figlabel{font-size:11px;font-weight:700;color:var(--blue);margin-bottom:6px}
@@ -76,35 +78,40 @@
   </div>
   <div class="heroright">
     <div class="figlabel">FIG.00 — KEEPER, IN ASCII</div>
-    <pre class="ascii">    <span class="ar">+++++++++++++++++++++++++</span>               
-    <span class="ar">+++++++++++++++++++:::::</span><span class="ak">@@@@</span><span class="ar">:::</span><span class="ak">@</span><span class="ar">:+++</span>    
-    <span class="ar">++++++++++++++::</span><span class="ak">@@@@@@@@@@@@@@@@@@@@@@</span><span class="ar">:+</span>
-   <span class="ar">+++++++++++:::</span><span class="ak">@@@@@@@@@@@@@@@@@@@@@@@@@@@</span>
-  <span class="ar">+::::::::::::</span><span class="ak">@@@@@@@@@@@@@@@</span><span class="ar">:+:+</span> <span class="ar">:</span><span class="ak">@</span><span class="ar">:</span><span class="ak">@@@@@@</span>
- <span class="ar">+</span><span class="ak">@@@@@@@@@@@@@@@@@@@@@@@@@</span><span class="ar">:::+:::+++:+::+:</span><span class="ak">@</span>
- <span class="ar">:</span><span class="ak">@@@@@@@@@@@@@@@@@@@@</span><span class="ar">::</span><span class="ak">@@</span><span class="ar">:+++++++++++++::+:</span>
-<span class="ar">:</span><span class="ak">@@@@@@@@@@@@@@@@@@@@@</span><span class="ar">+++++++</span>       <span class="ar">+++++++</span> 
-<span class="ar">:</span><span class="ak">@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><span class="ar">+::::</span><span class="ak">@@</span><span class="ar">:+</span>      
-<span class="ar">:</span><span class="ak">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><span class="ar">:+++</span><span class="ak">@@@@@@@</span><span class="ar">:</span> 
-<span class="ar">:</span><span class="ak">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span>
-<span class="ar">:</span><span class="ak">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span>
-<span class="ar">:</span><span class="ak">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span>
-<span class="ar">:</span><span class="ak">@@@@@@@@@@@@@@</span><span class="ar">::::::::::</span><span class="ak">@@@@@@@@@@@@@@@@@@@</span>
-<span class="ar">:::::+:::</span><span class="ak">@@@@@@</span><span class="ar">::::::::</span> <span class="ar">:</span><span class="ak">@@@@@@@@@@@@@@</span><span class="ar">:</span>    </pre>
+    <pre class="ascii"><span class="ar">:::::::::</span>
+<span class="ar">:</span>               <span class="ar">::::</span><span class="ak">++</span><span class="ar">::</span>  <span class="ar">:</span>
+<span class="ar">:</span>            <span class="ar">:</span><span class="ak">+@@@@@@@@@@@@@@+</span><span class="ar">:</span>       <span class="ar">:::::::</span>
+<span class="ar">:</span>     <span class="ar">::</span> <span class="ar">:</span> <span class="ak">++@@@@@@@@@@@@@@@@@@@+</span><span class="ar">:</span>   <span class="ar">:</span><span class="ak">@@@@@@@@@@</span>
+<span class="ar">:::::::::::</span><span class="ak">@@@@@@@@@@@@@@@@@@@@@@@</span><span class="ar">:</span>  <span class="ar">:</span><span class="ak">@@@@@@@@@@</span>
+        <span class="ar">:</span><span class="ak">+@@@@@@@@@@@@+</span><span class="ar">:::</span><span class="ak">@@@@@@@@+</span><span class="ar">:</span> <span class="ak">+@@@@@@@@@@</span>
+  <span class="ar">:</span><span class="ak">+</span><span class="ar">::::::::</span><span class="ak">+@@@@@@@@@@@@+</span><span class="ar">::</span>  <span class="ak">@+@@@@@@@</span><span class="ar">:</span> <span class="ak">+@@@@@@@@@@</span>
+ <span class="ar">:</span><span class="ak">@@@@@@@@@@@@@@@@@@@@@@++++</span><span class="ar">:</span> <span class="ar">:</span> <span class="ar">::::</span><span class="ak">@@+</span>  <span class="ak">+@@@@@@@@@@</span>
+ <span class="ak">+@@@@@@@@@@@@@@@@@@@@@</span><span class="ar">::</span>  <span class="ak">+</span><span class="ar">:::::::</span> <span class="ak">+</span><span class="ar">:</span>   <span class="ak">+@@@@@@@@@@</span>
+ <span class="ak">@@@@@@@@@@@@@@@@@@+@@</span><span class="ar">:</span> <span class="ar">::</span> <span class="ar">:::</span>   <span class="ar">::::</span>    <span class="ak">+@@@@@@@@@@</span>
+<span class="ak">+@@@@@@@@@@@@@@@@@</span><span class="ar">:</span> <span class="ar">:</span>     <span class="ar">:</span>              <span class="ak">+@@@@@@@@@@</span>
+<span class="ak">+@@@@@@@@@@@@@@@@@@++++@</span><span class="ar">:</span>                <span class="ak">+@@@@@@@@@@</span>
+<span class="ak">+@@@@@@@@@@@@@@@@@@@@@@@+</span><span class="ar">::::</span><span class="ak">@@</span>          <span class="ak">+@@@@@@@@@@</span>
+<span class="ak">@@@@@@@@@@@@@@@@@@@@@@@@@+</span><span class="ar">:::</span><span class="ak">@@@@++</span><span class="ar">:</span>     <span class="ak">+@@@@@@@@@@</span>
+<span class="ak">@@@@@@@@@@@@@@@@@@@@@@@@@@@+</span> <span class="ar">:</span><span class="ak">@@@@@@+</span>    <span class="ak">+@@@@@@@@@@</span>
+<span class="ak">@@@@@@@@@@@@@@@@@@@@@@@@@@@@+@@@@@@@@+</span>   <span class="ak">+@@@@@@@@@@</span>
+<span class="ak">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><span class="ar">:</span>  <span class="ak">+@@@@@@@@@@</span>
+<span class="ak">+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span>  <span class="ak">+@@@@@@@@@@</span>
+<span class="ak">+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+</span><span class="ar">:</span><span class="ak">@@@@@@@@@@@</span>
+<span class="ak">+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+++++@@@@@</span>
+<span class="ak">+@@@@@@@@@@@@++++++++@@@@@@@@@@@@@@@@@@+++</span><span class="ar">::</span><span class="ak">+</span><span class="ar">::::::</span><span class="ak">@</span>
+<span class="ak">++++</span><span class="ar">:::</span><span class="ak">@@@@@@++++++</span><span class="ar">::</span><span class="ak">@@@@@@@@@@@@@</span><span class="ar">:</span>         <span class="ak">+@+</span><span class="ar">:::</span> <span class="ak">+</span>
+<span class="ar">::::::::</span><span class="ak">+</span><span class="ar">::::</span><span class="ak">++++++</span> <span class="ar">:</span><span class="ak">@@@@@@@@@@@@</span><span class="ar">::</span><span class="ak">++++@@@@@@@@@@@@@</span></pre>
     <div class="ascii-signal">
       <div class="signal-label">FIELD SIGNAL // 001</div>
       <pre id="signal"></pre>
     </div>
-    <div class="hand">drawn by code, not photographed</div>
+    <div class="hand">rendered from a photo, char by char</div>
   </div>
 </div>
 </div></header>
 
 <div class="grid">
   <div>
-    
-    
-    
     <div style="margin-top:16px"><div class="secnum">PATH</div><h2>So far</h2>
     <div class="tl">
       <div><span>NOW</span><b>LLM pipelines @ Neoware</b>Hybrid retrieval, production LLM.</div>
