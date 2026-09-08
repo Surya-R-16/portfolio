@@ -44,14 +44,17 @@
   .tl span{color:var(--blue);font-weight:700}
   .stackline{font-size:12px;margin-bottom:10px}
   .stackline b{display:block;font-size:12px;background:var(--ink);color:#fff;display:inline-block;padding:1px 8px;margin-bottom:4px}
-  .hero{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:center}
-  .heroright{align-self:start;max-height:330px;overflow:hidden}
-  pre.ascii{display:block;width:100%;margin:0;padding:8px 10px;box-sizing:border-box;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:400;line-height:1.12;letter-spacing:0;white-space:pre;word-spacing:0;word-break:normal;overflow:hidden;background:#fff;border:2px solid var(--line);color:var(--ink);tab-size:4;font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0;}
-  pre.sea{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--blue);text-align:center;margin:6px 0 0}
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:36px;align-items:start}
+  .heroright{align-self:start;width:100%}
+  pre.ascii{display:block;width:100%;margin:0;padding:14px 12px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:400;line-height:1.28;letter-spacing:0;word-spacing:0;white-space:pre;overflow:hidden;background:#fff;border:2px solid var(--line);tab-size:4;font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0;}
+.ascii-signal{margin-top:10px;border:2px solid var(--line);background:#fff;padding:8px 10px;overflow:hidden}
+  .signal-label{color:var(--blue);font-size:9px;font-weight:700;margin-bottom:4px}
+  #signal{margin:0;padding:0;color:var(--blue);font-family:'JetBrains Mono',monospace;font-size:8px;line-height:1.15;white-space:pre;overflow:hidden;font-variant-ligatures:none}
   .figlabel{font-size:11px;font-weight:700;color:var(--blue);margin-bottom:6px}
   footer{border-top:2px solid var(--line);padding:26px 22px;text-align:center;font-size:12px}
   footer a{color:var(--blue)}
   .strip{height:14px;background:url('assets/courbet-dither-blue.png') center/cover;border-top:2px solid var(--line);border-bottom:2px solid var(--line);opacity:.85}
+  @media(max-width:800px){.hero{grid-template-columns:1fr}.heroright{max-width:390px;margin:24px auto 0}}@media(max-width:480px){pre.ascii{font-size:7px;line-height:1.25;padding:10px 8px}#signal{font-size:6px}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -88,7 +91,10 @@
 <span class="ar">::::::::::::::::</span><span class="ak">@+++</span>   <span class="ak">+++</span><span class="ar">:</span><span class="ak">@</span><span class="ar">::::::::::::::::</span>
 <span class="ar">:::::::::::::::::::</span><span class="ak">+</span> <span class="ak">+</span> <span class="ak">+</span><span class="ar">::::::::::::::::::::</span>
 <span class="ar">:::::::::::::::</span><span class="ak">@@@@@+++@@@@@@</span><span class="ar">:::::::::::::::</span></pre>
-    <pre class="sea" id="sea"></pre>
+    <div class="ascii-signal">
+      <div class="signal-label">FIELD SIGNAL // 001</div>
+      <pre id="signal"></pre>
+    </div>
     <div class="hand">drawn by code, not photographed</div>
   </div>
 </div>
@@ -146,19 +152,25 @@
 </footer>
 
 <script>
-  const SEA = ["-~≈≈≈≈~~--··---~~~~~--······-~~≈≈≈~~--·---~~\n~≈≈≈≈≈~~-·····--~~~~--·····--~≈≈≈≈~~--···--~\n~~≈≈≈~~-······--~~~~~--···--~≈≈≈≈≈~--·····--","~~~~---··--~≈≈≈≈≈~-······--~~~~--····--~≈≈≈≈\n≈≈≈~~--··---~~~~~--······-~~≈≈≈~~--·---~~≈≈≈\n≈≈≈~~-·····--~~~~--·····--~≈≈≈≈~~--···--~~~~","--·····-~~≈≈≈≈~~-·····--~~~~-······--~≈≈≈≈~~\n~---··--~≈≈≈≈≈~-······--~~~~--····--~≈≈≈≈≈~~\n~~--··---~~~~~--······-~~≈≈≈~~--·---~~≈≈≈~~-","·····-~~≈≈≈~~---·--~~~≈~~--······--~~≈~~---·\n····-~~≈≈≈≈~~-·····--~~~~-······--~≈≈≈≈~~--·\n-··--~≈≈≈≈≈~-······--~~~~--····--~≈≈≈≈≈~~-··"];
-  const seaEl = document.getElementById("sea");
-  const calm = !matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let fi = 0;
-  function tide() { seaEl.textContent = SEA[fi % SEA.length]; fi++; }
-  tide();
-  if (calm && SEA.length) setInterval(tide, 1100);
-  const btn = document.getElementById("lightBtn"), root = document.documentElement;
-  btn.addEventListener("click", () => {
-    const dusk = root.dataset.light !== "dusk";
-    root.dataset.light = dusk ? "dusk" : "morning";
-    btn.textContent = dusk ? "dusk" : "morning";
-  });
+const SIGNAL_W = 42, SIGNAL_H = 3;
+const signalEl = document.getElementById("signal");
+let signalFrame = 0;
+function drawSignal(){
+  let out = "";
+  for (let y = 0; y < SIGNAL_H; y++) {
+    for (let x = 0; x < SIGNAL_W; x++) {
+      const w = Math.sin((x + signalFrame) * 0.45 + y * 1.7) + Math.sin((x - signalFrame) * 0.18);
+      out += w > 0.9 ? "\u2248" : w > 0.3 ? "~" : w > -0.3 ? ":" : "\u00b7";
+    }
+    if (y < SIGNAL_H - 1) out += "\n";
+  }
+  signalEl.textContent = out;
+  signalFrame++;
+}
+drawSignal();
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  setInterval(drawSignal, 120);
+}
 </script>
 </body>
 </html>
