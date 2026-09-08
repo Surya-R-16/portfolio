@@ -30,7 +30,6 @@
   .grid>div:last-child{border-right:none}
   .secnum{font-size:12px;font-weight:700;color:var(--blue)}
   h2{font-family:Fraunces,serif;font-weight:700;font-size:26px;text-transform:uppercase;margin:2px 0 14px}
-  pre.sea{font-size:7px;color:var(--blue);text-align:center;margin-top:6px}
   .hand{font-family:Caveat,cursive;font-size:18px;color:var(--blue);margin-top:6px}
   .job{border:2px solid var(--line);padding:14px 16px;margin-bottom:12px;background:#fff}
   .job:hover{background:var(--blue);color:#fff}
@@ -45,11 +44,10 @@
   .tl span{color:var(--blue);font-weight:700}
   .stackline{font-size:12px;margin-bottom:10px}
   .stackline b{display:block;font-size:12px;background:var(--ink);color:#fff;display:inline-block;padding:1px 8px;margin-bottom:4px}
-  .hero{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:center}
-  pre.ascii{font-family:'JetBrains Mono',monospace;white-space:pre;background:#fff;border:2px solid var(--line);padding:12px 10px;overflow:hidden}
-  pre.ascii.hero{font-size:10px;line-height:1.12;padding:8px 10px}
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:center}
   .heroright{align-self:start;max-height:330px;overflow:hidden}
-  pre.sea{font-family:'JetBrains Mono',monospace;color:var(--blue);text-align:left;margin:6px 0 0;font-size:10px}
+  pre.ascii{display:block;width:100%;margin:0;padding:8px 10px;box-sizing:border-box;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:400;line-height:1.12;letter-spacing:0;white-space:pre;word-spacing:0;word-break:normal;overflow:hidden;background:#fff;border:2px solid var(--line);color:var(--ink);tab-size:4;font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0;}
+  pre.sea{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--blue);text-align:center;margin:6px 0 0}
   .figlabel{font-size:11px;font-weight:700;color:var(--blue);margin-bottom:6px}
   footer{border-top:2px solid var(--line);padding:26px 22px;text-align:center;font-size:12px}
   footer a{color:var(--blue)}
@@ -75,7 +73,7 @@
   </div>
   <div class="heroright">
     <div class="figlabel">FIG.00 — KEEPER, IN ASCII</div>
-    <pre class="ascii hero"><span class="ar">::::::::::::::::::::::::::::::::::::::::::::</span>
+    <pre class="ascii"><span class="ar">::::::::::::::::::::::::::::::::::::::::::::</span>
 <span class="ar">::::::::::::::::::::::::::::::::::::::::::::</span>
 <span class="ar">::::::::::::::::::::::::::::::::::::::::::::</span>
 <span class="ar">::::::::::::::::::::::::::::::::::::::::::::</span>
