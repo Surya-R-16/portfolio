@@ -1,104 +1,79 @@
 <!DOCTYPE html>
-<html lang="en" data-light="morning">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Surya — Field Notes</title>
+<title>SURYA REDDY — AI ENGINEER (brutal draft)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Caveat:wght@500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Caveat:wght@600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --paper:#F6F1E5; --ink:#2E2A23; --ink-soft:#6B6257;
-    --sage:#7D9070; --sage-deep:#5B7050; --terra:#C0683F; --ochre:#D29A3C;
-    --dusty:#7C99A8; --card:#FBF8F0; --line:#D8CDB4;
-  }
-  html[data-light="dusk"]{
-    --paper:#2E2B26; --ink:#EDE4D2; --ink-soft:#A79C88;
-    --sage:#9DB08D; --sage-deep:#B9CBA9; --terra:#D98A5F; --ochre:#D9A94F;
-    --dusty:#93AFC0; --card:#37332C; --line:#4A4438;
-  }
+  :root{--paper:#F5F2E8;--ink:#111;--blue:#0000EE;--line:#111}
   *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--paper);color:var(--ink);font-family:Georgia,serif;font-size:15.5px;line-height:1.6;
-    transition:background 1.2s,color 1.2s;min-height:100vh;display:flex;flex-direction:column}
-  body::after{content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.5;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E")}
-  .paint{position:fixed;inset:0;pointer-events:none;z-index:0;
-    background:url('assets/courbet-calm.jpg') center 30%/cover no-repeat;
-    opacity:.22;filter:sepia(.28) saturate(.9);mix-blend-mode:multiply}
-  html[data-light="dusk"] .paint{background-image:url('assets/church-aegean.jpg');opacity:.16;mix-blend-mode:normal}
-  nav,.desk{position:relative;z-index:1}
-  nav{border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--paper) 82%,transparent)}
-  nav .row{max-width:1180px;margin:0 auto;padding:10px 26px;display:flex;align-items:center;justify-content:space-between}
-  .brand{font-family:Fraunces,serif;font-weight:600;font-size:17px}
-  .brand em{font-family:Caveat,cursive;font-style:normal;color:var(--terra);font-size:19px}
-  nav ul{display:flex;gap:20px;list-style:none;font-size:13.5px}
-  nav a{color:var(--ink-soft);text-decoration:none} nav a:hover{color:var(--terra)}
-  #lightBtn{font-family:inherit;font-size:13px;color:var(--ink-soft);background:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;cursor:pointer}
-  #lightBtn:hover{border-color:var(--terra);color:var(--terra)}
-  .desk{max-width:1180px;margin:0 auto;padding:26px;width:100%;flex:1;
-    display:grid;grid-template-columns:290px 1fr 240px;gap:26px;align-items:start}
-  .figno{font-family:Caveat,cursive;font-size:19px;color:var(--sage-deep);display:block;margin-bottom:4px}
-  h1{font-family:Fraunces,serif;font-weight:500;font-size:34px;line-height:1.15}
-  h1 .u{position:relative;white-space:nowrap}
-  h1 .u svg{position:absolute;left:-2%;bottom:-.18em;width:104%;height:.42em;overflow:visible}
-  h1 .u path{fill:none;stroke:var(--ochre);stroke-width:5;stroke-linecap:round;stroke-dasharray:600;stroke-dashoffset:600;animation:draw 1.6s .7s ease forwards}
-  @keyframes draw{to{stroke-dashoffset:0}}
-  .lede{margin-top:12px;font-size:14.5px;color:var(--ink-soft)}
-  .lede strong{color:var(--ink)}
+  body{background:var(--paper);color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.6}
+  .mega{font-family:Fraunces,serif;font-weight:900;font-size:clamp(64px,14vw,190px);line-height:.92;letter-spacing:-.02em;text-transform:uppercase}
+  .mega .bl{color:var(--blue)}
+  nav{border-bottom:2px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:10px 22px;font-size:12px;font-weight:700}
+  nav a{color:var(--ink);text-decoration:none;margin-left:16px} nav a:hover{color:var(--blue);text-decoration:underline}
+  header{border-bottom:2px solid var(--line);position:relative;overflow:hidden}
+  header .ditherbg{position:absolute;inset:0;background:url('assets/courbet-dither-blue.png') center 35%/cover no-repeat;opacity:.5;pointer-events:none;
+    -webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent)}
+  header .in{position:relative;padding:34px 22px 26px;max-width:1100px;margin:0 auto}
+  .tag{display:inline-block;background:var(--blue);color:#fff;font-weight:700;font-size:12px;padding:3px 12px;margin-bottom:14px}
+  .sub{font-size:14px;max-width:62ch;margin-top:12px}
+  .sub b{background:var(--blue);color:#fff;padding:0 6px}
   .links{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
-  .links a{font-size:13px;color:var(--terra);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 13px;transition:all .3s}
-  .links a:hover{border-color:var(--terra);transform:translateY(-1px)}
-  pre.ascii{font-family:'JetBrains Mono',monospace;font-size:6.5px;line-height:1.25;margin-top:18px;
-    background:var(--card);border:1px solid var(--line);border-radius:6px;padding:14px 10px;overflow:hidden;white-space:pre}
-  pre.ascii .ar{color:var(--terra)} pre.ascii .ak{color:var(--ink)}
-  html[data-light="dusk"] pre.ascii .ak{color:var(--ink)}
-  .cap{font-family:Caveat,cursive;font-size:17px;color:var(--ink-soft);margin-top:6px}
-  h2{font-family:Fraunces,serif;font-weight:500;font-size:21px;margin:2px 0 14px}
-  .kicker{font-family:Caveat,cursive;font-size:19px;color:var(--sage-deep)}
-  .spec{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin-bottom:12px;position:relative;transition:transform .35s,box-shadow .35s}
-  .spec:hover{transform:translateY(-2px);box-shadow:5px 6px 0 rgba(210,154,60,.18)}
-  .spec h3{font-family:Fraunces,serif;font-size:18px;font-weight:600}
-  .spec h3 a{color:var(--ink);text-decoration:none;border-bottom:2px solid var(--ochre)}
-  .spec h3 a:hover{color:var(--terra)}
-  .spec p{color:var(--ink-soft);font-size:13.5px;margin-top:4px}
-  .spec .row{display:flex;align-items:center;gap:10px}
-  .dot{font-size:10px;font-weight:700;letter-spacing:.1em;border:1.5px solid;border-radius:4px;padding:1px 7px;white-space:nowrap}
-  .dot.live{color:var(--sage-deep);border-color:var(--sage-deep)}
-  .dot.done{color:var(--ochre);border-color:var(--ochre)}
-  .tags{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
-  .tags span{font-size:11.5px;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:1px 10px}
-  .tl{border-left:2px dotted var(--sage);margin:4px 0 18px 5px;padding-left:14px}
-  .tl div{margin-bottom:10px;font-size:13px}
-  .tl b{font-family:Fraunces,serif;font-size:13.5px;display:block}
-  .tl span{color:var(--terra);font-family:Caveat,cursive;font-size:16px}
-  .tl p{color:var(--ink-soft);font-size:12.5px}
-  .chips{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .chip{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px 10px}
-  .chip i{display:block;height:7px;border-radius:99px;margin-bottom:6px}
-  .chip b{font-family:Fraunces,serif;font-size:12.5px;display:block}
-  .chip small{color:var(--ink-soft);font-size:11px;line-height:1.4;display:block}
-  pre.ascii.sea{font-size:8px;text-align:center;color:var(--dusty);margin-top:10px;padding:8px 6px}
-  footer{position:relative;z-index:1;border-top:1px solid var(--line);text-align:center;
-    font-size:12px;color:var(--ink-soft);padding:12px;font-style:italic}
-  footer a{color:var(--terra)}
-  @media(min-width:1180px) and (min-height:760px){body{overflow:hidden}}
-  @media(max-width:1023px){.desk{grid-template-columns:1fr;max-width:640px}nav ul{display:none}}
+  .links a{border:2px solid var(--line);color:var(--ink);text-decoration:none;font-weight:700;font-size:12px;padding:5px 14px}
+  .links a:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+  .links a.hot{background:var(--ink);color:#fff}
+  .grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:250px 1fr 230px}
+  .grid>div{padding:20px;border-right:2px solid var(--line)}
+  .grid>div:last-child{border-right:none}
+  .secnum{font-size:12px;font-weight:700;color:var(--blue)}
+  h2{font-family:Fraunces,serif;font-weight:700;font-size:26px;text-transform:uppercase;margin:2px 0 14px}
+  pre.ascii{font-size:5.5px;line-height:1.25;background:#fff;border:2px solid var(--line);padding:10px 6px;overflow:hidden;white-space:pre}
+  pre.ascii .ar{color:var(--blue)} pre.ascii .ak{color:var(--ink)}
+  pre.sea{font-size:7px;color:var(--blue);text-align:center;margin-top:6px}
+  .hand{font-family:Caveat,cursive;font-size:18px;color:var(--blue);margin-top:6px}
+  .job{border:2px solid var(--line);padding:14px 16px;margin-bottom:12px;background:#fff}
+  .job:hover{background:var(--blue);color:#fff}
+  .job:hover a,.job:hover .m{color:#fff}
+  .job h3{font-size:15px}
+  .job h3 a{color:var(--ink)}
+  .job p{font-size:12.5px;margin-top:4px}
+  .job .m{display:inline-block;font-size:11px;font-weight:700;color:var(--blue);border:1.5px solid currentColor;padding:0 7px;margin-left:8px;vertical-align:middle}
+  .job .st{font-size:11px;margin-top:8px;opacity:.85}
+  .tl div{margin-bottom:12px;font-size:12.5px}
+  .tl b{display:block;font-size:13px}
+  .tl span{color:var(--blue);font-weight:700}
+  .stackline{font-size:12px;margin-bottom:10px}
+  .stackline b{display:block;font-size:12px;background:var(--ink);color:#fff;display:inline-block;padding:1px 8px;margin-bottom:4px}
+  footer{border-top:2px solid var(--line);padding:26px 22px;text-align:center;font-size:12px}
+  footer a{color:var(--blue)}
+  .strip{height:14px;background:url('assets/courbet-dither-blue.png') center/cover;border-top:2px solid var(--line);border-bottom:2px solid var(--line);opacity:.85}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}.grid>div{border-right:none;border-bottom:2px solid var(--line)}nav ul{display:none}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<div class="paint"></div>
-<nav><div class="row">
-  <div class="brand">Surya <em>· field notes</em></div>
-  <ul><li><a href="#ships">specimens</a></li><li><a href="#path">path</a></li><li><a href="#palette">palette</a></li></ul>
-  <button id="lightBtn" title="change the light">☀ morning</button>
-</div></nav>
+<nav><div><b>SURYA-R-16</b> — FIELD NOTES / BRUTAL DRAFT</div>
+<div><ul style="display:flex;gap:4px;list-style:none"><li><a href="#work">WORK</a></li><li><a href="#side">SIDE</a></li><li><a href="#stack">STACK</a></li><li><a href="#contact">CONTACT</a></li></ul></div></nav>
 
-<div class="desk">
+<header><div class="ditherbg"></div><div class="in">
+  <span class="tag">AI ENGINEER · DATA SCIENTIST · EST. OUTPUT: PRODUCTION</span>
+  <div class="mega">SURYA<br><span class="bl">REDDY</span></div>
+  <p class="sub">I build and ship <b>production AI</b> — LLMs, RAG, agents, machine learning. Day job: pipelines @ <b>Neoware</b>. After hours: voice-first apps.</p>
+  <div class="links">
+    <a href="https://github.com/Surya-R-16">GITHUB ↗</a>
+    <a href="https://www.linkedin.com/in/reddysurya/">LINKEDIN ↗</a>
+    <a href="mailto:reddysurya2016@gmail.com">EMAIL ↗</a>
+    <a href="https://x.com/SR1606_">X ↗</a>
+  </div>
+</div></header>
+
+<div class="grid">
   <div>
-    <span class="figno">fig. 00 — the keeper, in ASCII</span>
-    <pre class="ascii" title="the keeper, rendered locally in text"><span class="ar">::::::::::::::::::::::::::::::::::::::::::::</span>
+    <div class="secnum">FIG.00</div><h2>Keeper</h2>
+    <pre class="ascii"><span class="ar">::::::::::::::::::::::::::::::::::::::::::::</span>
 <span class="ar">::::::::::::::::::::::::::::::::::::::::::::</span>
 <span class="ar">::::::::::::::::::::::::::::::::::::::::::::</span>
 <span class="ar">::::::::::::::::::::::::::::::::::::::::::::</span>
@@ -120,69 +95,62 @@
 <span class="ar">:::::::::::::::::::</span><span class="ak">@++</span> <span class="ak">+</span><span class="ar">::::::::::::::::::::</span>
 <span class="ar">::::::::::::::::</span><span class="ak">@@</span>       <span class="ak">@@</span><span class="ar">:::::::::::::::::</span>
 <span class="ar">::::::::::::::</span><span class="ak">@@@@@@@@@@@@@@@</span><span class="ar">:::::::::::::::</span></pre>
-    <div class="cap">drawn by code, not photographed</div>
-    <pre class="ascii sea" id="sea" title="the calm sea, in text"></pre>
-    <h1 style="margin-top:14px">Applied AI,<br>kept like <span class="u">field notes.<svg viewBox="0 0 300 24" preserveAspectRatio="none"><path d="M4,16 C60,8 120,20 170,12 S270,10 296,14"/></svg></span></h1>
-    <p class="lede">I'm <strong>Surya</strong> — AI Engineer &amp; Data Scientist. Applied AI end-to-end; LLM pipelines at <strong>Neoware</strong>, voice-first apps on the side.</p>
-    <div class="links">
-      <a href="mailto:reddysurya2016@gmail.com">email</a>
-      <a href="https://github.com/Surya-R-16">github</a>
-      <a href="https://www.linkedin.com/in/reddysurya/">linkedin</a>
-      <a href="https://x.com/SR1606_">x</a>
-    </div>
+    <pre class="sea" id="sea"></pre>
+    <div class="hand">drawn by code, not photographed</div>
+    <div style="margin-top:16px"><div class="secnum">PATH</div><h2>So far</h2>
+    <div class="tl">
+      <div><span>NOW</span><b>LLM pipelines @ Neoware</b>Hybrid retrieval, production LLM.</div>
+      <div><span>→</span><b>CrewAI finance</b>5× faster reports.</div>
+      <div><span>→</span><b>RAG &gt;95%</b>CI-gated eval.</div>
+      <div><span>→</span><b>YOLOv8 defects</b>Live factory streams.</div>
+      <div><span>→</span><b>MSc Lancaster '24</b>BE E&amp;TC '22.</div>
+    </div></div>
   </div>
-
-  <div id="ships">
-    <div class="kicker">specimens</div><h2>Shipped &amp; shipping</h2>
-    <div class="spec"><div class="row"><h3><a href="https://the-capsule.vercel.app">The-Capsule</a></h3><span class="dot live">● LIVE</span></div>
-      <p>AI voice journal — speak, it transcribes and finds your patterns. Gemini, private on-device.</p>
-      <div class="tags"><span>TypeScript</span><span>Gemini</span><span>PWA</span></div></div>
-    <div class="spec"><div class="row"><h3><a href="https://goal65.vercel.app">NutriVoice</a></h3><span class="dot live">● LIVE</span></div>
-      <p>Voice-first nutrition — say what you ate, get macros back. React 19, local-first.</p>
-      <div class="tags"><span>React</span><span>Vite</span><span>Gemini</span></div></div>
-    <div class="spec"><div class="row"><h3><a href="https://github.com/Surya-R-16/TRACKO">TRACKO</a></h3><span class="dot done">● V1 DONE</span></div>
-      <p>Android expenses from bank SMS — payee memory, income/expense detection, Compose UI, tested.</p>
-      <div class="tags"><span>Kotlin</span><span>Compose</span><span>Room</span></div></div>
+  <div id="work">
+    <div class="secnum">01</div><h2>Work</h2>
+    <div class="job"><h3><a href="https://the-capsule.vercel.app">THE-CAPSULE</a><span class="m">● LIVE</span></h3>
+      <p>AI voice journal — speak, it transcribes, finds your patterns. Gemini, on-device.</p>
+      <div class="st">TYPESCRIPT / GEMINI / PWA</div></div>
+    <div class="job"><h3><a href="https://goal65.vercel.app">NUTRIVOICE</a><span class="m">● LIVE</span></h3>
+      <p>Voice-first nutrition — say what you ate, get macros. React 19, local-first.</p>
+      <div class="st">REACT / VITE / GEMINI</div></div>
+    <div class="job"><h3><a href="https://github.com/Surya-R-16/TRACKO">TRACKO</a><span class="m">● V1 DONE</span></h3>
+      <p>Android expenses from bank SMS — payee memory, Compose UI, tested.</p>
+      <div class="st">KOTLIN / COMPOSE / ROOM</div></div>
+    <div class="job"><h3>ENTERPRISE RAG<span class="m">&gt;95% Q&amp;A</span></h3>
+      <p>BM25 + vector + cross-encoder rerank over enterprise corpora. MLflow, CI-gated.</p>
+      <div class="st">LANGCHAIN / PINECONE / FAISS / OPENAI</div></div>
+    <div class="job"><h3>CREWAI FINANCE<span class="m">5× FASTER</span></h3>
+      <p>Researcher/Analyst/Compiler agents → finished reports. −40% validation.</p>
+      <div class="st">CREWAI / PYTHON / SQL</div></div>
   </div>
-
-  <div>
-    <div id="path"><div class="kicker">the path</div><h2>So far</h2>
-      <div class="tl">
-        <div><span>now</span><b>LLM pipelines @ Neoware</b><p>Hybrid retrieval, production LLM work.</p></div>
-        <div><span>earlier</span><b>CrewAI finance reports</b><p>5× faster, 40% less validation.</p></div>
-        <div><span>earlier</span><b>RAG engine</b><p>&gt;95% Q&amp;A, CI-gated eval.</p></div>
-        <div><span>earlier</span><b>YOLOv8 defect detection</b><p>Live factory streams.</p></div>
-      </div></div>
-    <div id="palette"><div class="kicker">palette</div><h2>Stack</h2>
-      <div class="chips">
-        <div class="chip"><i style="background:#8B5CF6"></i><b>LLMs</b><small>OpenAI · Anthropic · Gemini</small></div>
-        <div class="chip"><i style="background:#C0683F"></i><b>Agents</b><small>LangChain · LlamaIndex · CrewAI</small></div>
-        <div class="chip"><i style="background:#7D9070"></i><b>ML</b><small>PyTorch · sklearn · HF · YOLOv8</small></div>
-        <div class="chip"><i style="background:#D29A3C"></i><b>Data</b><small>Pinecone · FAISS · Neo4j · PG</small></div>
-        <div class="chip"><i style="background:#7C99A8"></i><b>Eng</b><small>Python · TS · React · FastAPI</small></div>
-        <div class="chip"><i style="background:#B087B8"></i><b>Mobile</b><small>Kotlin · Compose</small></div>
-      </div></div>
+  <div id="stack">
+    <div class="secnum">04</div><h2>Stack</h2>
+    <div class="stackline"><b>LLMS</b><br>OpenAI · Anthropic · Gemini</div>
+    <div class="stackline"><b>AGENTS</b><br>LangChain · LlamaIndex · CrewAI</div>
+    <div class="stackline"><b>ML</b><br>PyTorch · sklearn · HF · YOLOv8</div>
+    <div class="stackline"><b>DATA</b><br>Pinecone · FAISS · Neo4j · PG</div>
+    <div class="stackline"><b>ENG</b><br>Python · TS · React · FastAPI · Docker</div>
+    <div class="stackline"><b>MOBILE</b><br>Kotlin · Compose</div>
   </div>
 </div>
 
-<footer>Set in Fraunces &amp; JetBrains Mono on one HTML page · Courbet wash via The Met Open Access · MSc Lancaster — <a href="https://github.com/Surya-R-16">github</a></footer>
+<div class="strip"></div>
+
+<footer id="contact">
+  <b>OPEN TO AI/ML/GENAI ROLES →</b>
+  <a href="mailto:reddysurya2016@gmail.com">reddysurya2016@gmail.com</a><br>
+  <span style="font-size:11px">One HTML file · Courbet, dithered to cobalt · The Met Open Access · No frameworks</span>
+</footer>
 
 <script>
-  const SEA = [`-~≈≈≈≈~~--··---~~~~~--······-~~≈≈≈~~--\n~≈≈≈≈≈~~-·····--~~~~--·····--~≈≈≈≈~~--\n~~≈≈≈~~-······--~~~~~--···--~≈≈≈≈≈~--·\n-~~~~~--······-~~≈≈≈~~------~~≈≈≈~~-··`,`~~~~---··--~≈≈≈≈≈~-······--~~~~--····-\n≈≈≈~~--··---~~~~~--······-~~≈≈≈~~--·--\n≈≈≈~~-·····--~~~~--·····--~≈≈≈≈~~--···\n≈≈~~-······--~~~~~--···--~≈≈≈≈≈~--····`,`--·····-~~≈≈≈≈~~-·····--~~~~-······--~\n~---··--~≈≈≈≈≈~-······--~~~~--····--~≈\n~~--··---~~~~~--······-~~≈≈≈~~--·---~~\n~~-·····--~~~~--·····--~≈≈≈≈~~--···--~`,`·····-~~≈≈≈~~---·--~~~≈~~--······--~~≈\n····-~~≈≈≈≈~~-·····--~~~~-······--~≈≈≈\n-··--~≈≈≈≈≈~-······--~~~~--····--~≈≈≈≈\n-··---~~~~~--······-~~≈≈≈~~--·---~~≈≈≈`];
+  const SEA = [`-~≈≈≈≈~~--··---~~~~~--······-~\n~≈≈≈≈≈~~-·····--~~~~--·····--~\n~~≈≈≈~~-······--~~~~~--···--~≈`,`~~~~---··--~≈≈≈≈≈~-······--~~~\n≈≈≈~~--··---~~~~~--······-~~≈≈\n≈≈≈~~-·····--~~~~--·····--~≈≈≈`,`--·····-~~≈≈≈≈~~-·····--~~~~-·\n~---··--~≈≈≈≈≈~-······--~~~~--\n~~--··---~~~~~--······-~~≈≈≈~~`,`·····-~~≈≈≈~~---·--~~~≈~~--···\n····-~~≈≈≈≈~~-·····--~~~~-····\n-··--~≈≈≈≈≈~-······--~~~~--···`];
   const seaEl = document.getElementById('sea');
   const calm = !matchMedia('(prefers-reduced-motion: reduce)').matches;
   let fi = 0;
   function tide() { seaEl.textContent = SEA[fi % SEA.length]; fi++; }
   tide();
   if (calm && SEA.length) setInterval(tide, 1100);
-</script>
-<script>
-  const btn = document.getElementById('lightBtn'), root = document.documentElement;
-  btn.addEventListener('click', () => {
-    const dusk = root.dataset.light !== 'dusk';
-    root.dataset.light = dusk ? 'dusk' : 'morning';
-    btn.textContent = dusk ? '☾ dusk' : '☀ morning';
-  });
 </script>
 </body>
 </html>
