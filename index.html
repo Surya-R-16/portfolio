@@ -4,6 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Surya Reddy — AI Engineer</title>
+<meta name="description" content="AI engineer building production LLMs, RAG and agents. Hybrid retrieval at >95% on an internal eval set, CI-gated evals, live voice-first apps. MSc Data Science, Lancaster.">
+<link rel="canonical" href="https://surya-r-16.github.io/portfolio/">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F5F2E8">
+<meta name="author" content="Surya Reddy">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Surya Reddy — AI Engineer">
+<meta property="og:description" content="Production AI: LLMs, RAG, agents. Hybrid retrieval >95% on an internal eval set, evals gated by CI, live voice-first apps.">
+<meta property="og:url" content="https://surya-r-16.github.io/portfolio/">
+<meta property="og:image" content="https://surya-r-16.github.io/portfolio/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Surya Reddy — AI Engineer">
+<meta name="twitter:description" content="Production AI: LLMs, RAG, agents. Hybrid retrieval >95% on an internal eval set.">
+<meta name="twitter:image" content="https://surya-r-16.github.io/portfolio/assets/og.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Surya Reddy","url":"https://surya-r-16.github.io/portfolio/","jobTitle":"AI Engineer","alumniOf":{"@type":"CollegeOrUniversity","name":"Lancaster University"},"knowsAbout":["LLM pipelines","Retrieval-augmented generation","AI agents","Machine learning"],"sameAs":["https://github.com/Surya-R-16","https://www.linkedin.com/in/reddysurya/","https://x.com/SR1606_"],"email":"mailto:reddysurya2016@gmail.com"}
+</script>
+<script type="module" src="https://ascii.rest/ascii.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Caveat:wght@600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -48,9 +68,6 @@
   .stackline b{display:block;font-size:12px;background:var(--ink);color:#fff;display:inline-block;padding:1px 8px;margin-bottom:4px}
   .hero{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:36px;align-items:start}
   .heroright{align-self:start;width:100%}
-  /* FIX: these two classes are used throughout the ASCII art but were never
-     defined, so every glyph rendered in plain black regardless of intended
-     shade. Restoring the two-tone "dithered to cobalt" look. */
 .ascii-signal{margin-top:12px;min-height:72px;border:2px solid var(--line);background:#fff;padding:8px 10px;overflow:hidden}
   .signal-label{color:var(--blue);font-size:9px;font-weight:700;margin-bottom:4px}
   #signal{margin:0;padding:0;color:var(--blue);font-family:'JetBrains Mono',monospace;font-size:8px;line-height:1.15;white-space:pre;overflow:hidden;font-variant-ligatures:none}
@@ -86,6 +103,14 @@
     h2{font-size:22px}
     nav{font-size:11px}
   }
+  /* instruments: ascii.rest pieces carrying real content. Same paper, same ink. */
+  .inst{border:2px solid var(--line);background:#fff;padding:8px 10px;margin-bottom:14px;overflow:hidden}
+  .inst .ilabel{color:var(--blue);font-size:9px;font-weight:700;margin-bottom:4px}
+  .inst ascii-art{color:var(--blue);display:block;line-height:1.15}
+  .job .inst{border-width:1.5px;margin:10px 0 0;padding:7px 9px}
+  .job:hover .inst{background:#eef0ff}
+  .job:hover .inst ascii-art,.job:hover .inst .ilabel{color:var(--blue)}
+  @media(max-width:640px){.inst ascii-art{font-size:4.5px!important}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -99,10 +124,10 @@
   <div class="mega">SURYA<br><span class="bl">REDDY</span></div>
   <p class="sub">I build and ship <b>production AI</b> — LLMs, RAG, agents, machine learning. Day job: pipelines @ <b>Neoware</b>. After hours: voice-first apps.</p>
   <div class="links">
-    <a href="https://github.com/Surya-R-16">GITHUB ↗</a>
-    <a href="https://www.linkedin.com/in/reddysurya/">LINKEDIN ↗</a>
+    <a href="https://github.com/Surya-R-16" target="_blank" rel="noopener">GITHUB ↗</a>
+    <a href="https://www.linkedin.com/in/reddysurya/" target="_blank" rel="noopener">LINKEDIN ↗</a>
     <a href="mailto:reddysurya2016@gmail.com">EMAIL ↗</a>
-    <a href="https://x.com/SR1606_">X ↗</a>
+    <a href="https://x.com/SR1606_" target="_blank" rel="noopener">X ↗</a>
   </div>
   </div>
   <div class="heroright">
@@ -135,13 +160,16 @@
   </div>
   <div id="work">
     <div class="secnum">02</div><h2>Work</h2>
-    <div class="job"><h3><a href="https://the-capsule.vercel.app">THE-CAPSULE</a><span class="m">● LIVE</span></h3>
+    <div class="inst"><div class="ilabel">SERVICE BOARD // 60 DAYS</div>
+      <ascii-art piece="uptime-bar" mono style="font-size:8px" label="Sixty days of uptime bars for the-capsule and nutrivoice"
+        options='{"services":["the-capsule","nutrivoice"]}'></ascii-art></div>
+    <div class="job"><h3><a href="https://the-capsule.vercel.app" target="_blank" rel="noopener">THE-CAPSULE</a><span class="m">● LIVE</span></h3>
       <p>AI voice journal — speak, it transcribes, finds your patterns. Gemini, on-device.</p>
-      <div class="st">TYPESCRIPT / GEMINI / PWA</div></div>
-    <div class="job"><h3><a href="https://goal65.vercel.app">NUTRIVOICE</a><span class="m">● LIVE</span></h3>
+      <div class="st">TYPESCRIPT / GEMINI / PWA</div><details style="font-size:12px;margin-top:8px"><summary style="cursor:pointer;font-weight:700;color:var(--blue)">File tree →</summary><div class="inst"><div class="ilabel">TREE // THE-CAPSULE</div><ascii-art piece="file-tree" mono style="font-size:8px" label="TREE    THE-CAPSULE" options='{"root":"the-capsule/","entries":"App.tsx\nindex.tsx\napi/\n  gemini-proxy.ts\ncomponents/\n  VoiceRecorder.tsx\n  InsightsDashboard.tsx\n  MoodTrendChart.tsx\n  CalendarView.tsx\n  ArchiveSearch.tsx\n  WeeklyLetterView.tsx\n  StreakBadge.tsx\n  Auth.tsx"}'></ascii-art></div></details></div>
+    <div class="job"><h3><a href="https://goal65.vercel.app" target="_blank" rel="noopener">NUTRIVOICE</a><span class="m">● LIVE</span></h3>
       <p>Voice-first nutrition — say what you ate, get macros. React 19, local-first.</p>
-      <div class="st">REACT / VITE / GEMINI</div></div>
-    <div class="job"><h3><a href="https://github.com/Surya-R-16/TRACKO">TRACKO</a><span class="m">● V1 DONE</span></h3>
+      <div class="st">REACT / VITE / GEMINI</div><details style="font-size:12px;margin-top:8px"><summary style="cursor:pointer;font-weight:700;color:var(--blue)">File tree →</summary><div class="inst"><div class="ilabel">TREE // NUTRIVOICE</div><ascii-art piece="file-tree" mono style="font-size:8px" label="TREE    NUTRIVOICE" options='{"root":"nutrivoice/","entries":"App.tsx\napi/\n  analyze.ts\nservices/\n  geminiService.ts\ncomponents/\n  VoiceRecorder.tsx\n  Dashboard.tsx\n  Analytics.tsx\n  HistoryPage.tsx\n  Onboarding.tsx\n  SettingsPage.tsx\n  EditLogModal.tsx\nmetadata.json"}'></ascii-art></div></details></div>
+    <div class="job"><h3>TRACKO<span class="m">● V1 DONE</span></h3>
       <p>Android expenses from bank SMS — payee memory, Compose UI, tested.</p>
       <div class="st">KOTLIN / COMPOSE / ROOM</div></div>
     <div class="job"><h3>ENTERPRISE RAG<span class="m">&gt;95% Q&amp;A</span></h3>
@@ -159,7 +187,7 @@
     <div class="stackline"><b>AGENTS</b><br>LangChain · LlamaIndex · CrewAI · LangGraph</div>
     <div class="stackline"><b>ML</b><br>PyTorch · sklearn · XGBoost · HF · YOLOv8</div>
     <div class="stackline"><b>DATA</b><br>Pinecone · FAISS · Weaviate · Qdrant · Neo4j · PG</div>
-    <div class="stackline"><b>ENG</b><br>Python · TS · React · SQL · FastAPI · Docker</div>
+    <div class="stackline"><b>ENG</b><br>Python · TS · React · Next.js · Kotlin · Compose · SQL · FastAPI · Docker</div>
     <div class="stackline"><b>OPS</b><br>MLflow · AWS · GCP · CI/CD · Linux</div>
   </div>
 </div>
@@ -167,6 +195,12 @@
 <div class="strip"></div>
 
 <footer id="contact">
+  <div class="inst" style="max-width:560px;margin:0 auto 16px;text-align:left">
+    <div class="ilabel">SIGNAL // MORSE</div>
+    <ascii-art piece="morse" mono style="font-size:5px"
+      label="Open to AI, ML and GenAI roles, transmitted in morse code"
+      options='{"text":"open to ai ml genai roles"}'></ascii-art>
+  </div>
   <b>OPEN TO AI/ML/GENAI ROLES →</b>
   <a href="mailto:reddysurya2016@gmail.com">reddysurya2016@gmail.com</a><br>
   <span style="font-size:11px">One HTML file · Courbet, dithered to cobalt · The Met Open Access · No frameworks</span>
